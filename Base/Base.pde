@@ -10,6 +10,13 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 PImage treeImg;
 PImage lBranchImg;
 PImage rBranchImg;
+//animations for player character
+PImage axeL1Img;
+PImage axeL2Img;
+PImage axeL3Img;
+PImage axeR1Img;
+PImage axeR2Img;
+PImage axeR3Img;
 
 void setup(){
   size(400, 400);
@@ -24,6 +31,12 @@ void setup(){
   stumpImg = loadImage("stump.png");
   lBranchImg = loadImage("branchLeft.png");
   rBranchImg = loadImage("branchRight.png");
+  axeL1Img = loadImage("axeLeft1.png");
+  axeL2Img = loadImage("axeLeft2.png");
+  axeL3Img = loadImage("axeLeft3.png");
+  axeR1Img = loadImage("axeRight1.png");
+  axeR2Img = loadImage("axeRight2.png");
+  axeR3Img = loadImage("axeRight3.png");
 }
 
 void draw(){
@@ -47,5 +60,21 @@ void draw(){
       image(lBranchImg, 200-55, 330 - (i * treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
     }
   }
-  
+  //setting player character on left or right of the tree
+  if (posLeft == true){
+      image(axeL1Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+    }
+    //if the branch value = 1 then spawn a brach on the left side
+    else{
+      image(axeR1Img, 255, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+    }
+}
+
+void keyPressed(){
+  if (keyCode == LEFT){
+   posLeft = true;
+  }
+  else if (keyCode == RIGHT){
+   posLeft = false;
+  }
 }
