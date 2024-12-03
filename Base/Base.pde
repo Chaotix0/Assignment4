@@ -22,11 +22,7 @@ void setup(){
   size(400, 400);
   rectMode(CENTER);
   noStroke();
-  //makes the logs appear on the screen to the top
-  for (int i = 0; i <= 5; i++){
-    tree.add(int(random(0,5)));
-  }
-  tree.set(0,2);
+  gameSetup();
   treeImg = loadImage("tree.png");
   stumpImg = loadImage("stump.png");
   lBranchImg = loadImage("branchLeft.png");
@@ -37,6 +33,15 @@ void setup(){
   axeR1Img = loadImage("axeRight1.png");
   axeR2Img = loadImage("axeRight2.png");
   axeR3Img = loadImage("axeRight3.png");
+}
+
+void gameSetup(){
+  //makes the logs appear on the screen to the top
+  tree.add(2);
+  //spawns the first one before the rest to make sure there are no branches
+  for (int i = 0; i <= 4; i++){
+    tree.add(int(random(0,5)));
+  }
 }
 
 void draw(){
