@@ -9,6 +9,7 @@ boolean inMenu = true;
 boolean chop = false;
 boolean treeFalling = false;
 ArrayList<Integer> tree = new ArrayList<Integer>();
+int frame;
 ArrayList<Particle> particles = new ArrayList<Particle>();
 PImage treeImg;
 PImage lBranchImg;
@@ -59,14 +60,21 @@ void draw() {
   }
 }
 
-void treeFall(){
+void treeFall() {
   // if the frame of the animation is 0, make the particle appear
-  // if frame is (whatever is long enough for the player to be able to dodge the branch above), make the code underneath run
-  // 0 = first log takes position of log above and transfers them to all above logs
-  for (int i = 0; i < tree.size() - 1; i++) {
-    tree.set(i, i+1); // taking wahts above and transfering underneath
+  if (frame == 0) {
+    particles.add(new Particle());
   }
-  treeFalling = false;
+  // if frame is (whatever is long enough for the player to be able to dodge the branch above), make the code underneath run
+  if (frame == 10) {
+    // 0 = first log takes position of log above and transfers them to all above logs
+    for (int i = 0; i < tree.size() - 1; i++) {
+      tree.set(i, i+1); // taking wahts above and transfering underneath
+    }
+    //makes top branch random
+    tree.set(5, (int(random(0, 5))));
+    treeFalling = false;
+  }
 }
 
 void game() {
@@ -93,8 +101,7 @@ void game() {
     //chop and facing left play left chop sprite
     if (chop == true) {
       image(axeL2Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
-    }
-    else {
+    } else {
       image(axeL1Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
     }
   }
@@ -102,12 +109,19 @@ void game() {
   else {
     //chop and facing right play right chop sprite
     if (chop == true) {
-      image(axeR2Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
-    }
-    else {
+      image(axeR2Img, 255, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+    } else {
       image(axeR1Img, 255, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
     }
   }
+  
+  if(treeFalling == true){
+    treeFall();
+  }
+  if(frame == 5){
+    chop = false;
+  }
+  frame += 1;
 }
 
 void keyPressed() {
@@ -125,9 +139,10 @@ void keyPressed() {
       if (int(posLeft) == tree.get(0)) {
         // game over
       } else {
+        treeFalling = true;
         chop = true;
         // reset the tree falling timer
-        treeFall();
+        frame = 0;
         // continue
       }
     }
