@@ -26,6 +26,7 @@ PImage axeR2Img;
 PImage axeR3Img;
 PImage titleImg;
 PImage gameOverImg;
+PImage signImg;
 PFont font;
 
 void setup() {
@@ -44,6 +45,7 @@ void setup() {
   axeR2Img = loadImage("axeRight2.png");
   axeR3Img = loadImage("axeRight3.png");
   gameOverImg = loadImage("gameOver.png");
+  signImg = loadImage("sign.png");
   font = createFont("Comic Sans MS", 30);
 }
 
@@ -110,6 +112,7 @@ void treeFall() {
 void game() {
   fill(0, 88, 0);
   rect(200, 370, 400, 60);
+  image(signImg, 50, 310, stumpImg.width * 4, stumpImg.height * 4);
   image(stumpImg, 200, 330, stumpImg.width * 4, stumpImg.height * 4);
   //loop is going through all sections of the tree and diplaying them
   for (int i = 0; i < tree.size(); i++) {
