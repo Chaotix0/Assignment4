@@ -75,14 +75,14 @@ void draw() {
   }
   if (gameOver == true) {
     if (posLeft == true) {
-      image(axeL3Img, 140, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+      image(axeL3Img, 140, 380 - (treeImg.height), treeImg.height, treeImg.height);
       image(gameOverImg, 200, 200, 400, 400);
       if (key == ' ' && frame == 50) {
         inMenu = true;
         gameOver = false;
       }
     } else if (posLeft == false) {
-      image(axeR3Img, 270, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+      image(axeR3Img, 270, 380 - (treeImg.height), treeImg.height, treeImg.height);
       image(gameOverImg, 200, 200, 400, 400);
       if (key == ' ' && frame == 50) {
         inMenu = true;
@@ -112,21 +112,21 @@ void treeFall() {
 void game() {
   fill(0, 88, 0);
   rect(200, 370, 400, 60);
-  image(signImg, 50, 310, stumpImg.width * 4, stumpImg.height * 4);
-  image(stumpImg, 200, 330, stumpImg.width * 4, stumpImg.height * 4);
+  image(signImg, 50, 310, stumpImg.height, stumpImg.height);
+  image(stumpImg, 200, 330, stumpImg.height, stumpImg.height);
   //loop is going through all sections of the tree and diplaying them
   for (int i = 0; i < tree.size(); i++) {
-    image(treeImg, 200, 330 - (i * treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+    image(treeImg, 200, 330 - (i * treeImg.height), treeImg.height, treeImg.height);
   }
   //for loop showing all logs of the tree
   for (int i = 0; i < tree.size(); i++) {
     //if the branch value = 0 then spawn a brach on the right side
     if (tree.get(i) == 0) {
-      image(rBranchImg, 200+60, 330 - (i * treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+      image(rBranchImg, 200+60, 330 - (i * treeImg.height), treeImg.height, treeImg.height );
     }
     //if the branch value = 1 then spawn a brach on the left side
     else if (tree.get(i) == 1) {
-      image(lBranchImg, 200-55, 330 - (i * treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+      image(lBranchImg, 200-55, 330 - (i * treeImg.height), treeImg.height, treeImg.height);
     }
   }
   //setting player character on left or right of the tree
@@ -134,9 +134,9 @@ void game() {
     //chop and facing left play left chop sprite
     if (gameOver == false) {
       if (chop == true) {
-        image(axeL2Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+        image(axeL2Img, 150, 380 - (treeImg.height), treeImg.height, treeImg.height);
       } else {
-        image(axeL1Img, 150, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+        image(axeL1Img, 150, 380 - (treeImg.height), treeImg.height, treeImg.height);
       }
     }
   }
@@ -145,9 +145,9 @@ void game() {
     //chop and facing right play right chop sprite
     if (gameOver == false) {
       if (chop == true) {
-        image(axeR2Img, 255, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+        image(axeR2Img, 255, 380 - (treeImg.height), treeImg.height, treeImg.height);
       } else {
-        image(axeR1Img, 255, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
+        image(axeR1Img, 255, 380 - (treeImg.height), treeImg.height, treeImg.height);
       }
     }
   }
