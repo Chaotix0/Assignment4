@@ -25,6 +25,7 @@ PImage axeR1Img;
 PImage axeR2Img;
 PImage axeR3Img;
 PImage titleImg;
+PImage gameOverImg;
 PFont font;
 
 void setup() {
@@ -42,6 +43,7 @@ void setup() {
   axeR1Img = loadImage("axeRight1.png");
   axeR2Img = loadImage("axeRight2.png");
   axeR3Img = loadImage("axeRight3.png");
+  gameOverImg = loadImage("gameOver.png");
   font = createFont("Comic Sans MS", 30);
 }
 
@@ -55,6 +57,7 @@ void gameSetup() {
   for (int i = 0; i <= 4; i++) {
     tree.add(int(random(0, 5)));
   }
+  tree.set(0, 2);
 }
 
 void draw() {
@@ -64,21 +67,25 @@ void draw() {
   } else if (game == true) {
     game();
   }
+  if (timer <= 0) {
+    gameOver = true;
+    frame = 0;
+  }
   if (gameOver == true) {
     if (posLeft == true) {
       image(axeL3Img, 140, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
-
-      //if (key == ' ') {
-      //  inMenu = True;
-      //  gameOver = false;
-      //}
+      image(gameOverImg, 200, 200, 400, 400);
+      if (key == ' ' && frame == 50) {
+        inMenu = true;
+        gameOver = false;
+      }
     } else if (posLeft == false) {
       image(axeR3Img, 270, 380 - (treeImg.height * 4), treeImg.width * 4, treeImg.height * 4);
-      
-      //if (key == ' ') {
-      //  inMenu = True;
-      //  gameOver = false;
-      //}
+      image(gameOverImg, 200, 200, 400, 400);
+      if (key == ' ' && frame == 50) {
+        inMenu = true;
+        gameOver = false;
+      }
     }
   }
 }
@@ -174,17 +181,14 @@ void keyPressed() {
     if (key == ' ' && treeFalling == false) {
       if (int(posLeft) == tree.get(0)) {
         gameOver = true;
+        frame = 0;
       } else {
         treeFalling = true;
         chop = true;
-        if (timer <= 0) {
-          gameOver = true;
-        } else {
-          // reset the tree falling timer
-          timer = 300;
-          frame = 0;
-          // continue
-        }
+        //reset the tree falling timer
+        timer = 300;
+        frame = 0;
+        // continue
       }
     }
   }
