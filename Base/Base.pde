@@ -24,6 +24,7 @@ PImage axeL3Img;
 PImage axeR1Img;
 PImage axeR2Img;
 PImage axeR3Img;
+PImage treeChoppedImg;
 PImage titleImg;
 PImage gameOverImg;
 PImage signImg;
@@ -38,6 +39,7 @@ void setup() {
   stumpImg = loadImage("stump.png");
   lBranchImg = loadImage("branchLeft.png");
   rBranchImg = loadImage("branchRight.png");
+  treeChoppedImg = loadImage("Treechopped.png");
   axeL1Img = loadImage("axeLeft1.png");
   axeL2Img = loadImage("axeLeft2.png");
   axeL3Img = loadImage("axeLeft3.png");
@@ -158,6 +160,8 @@ void game() {
   if (frame == 5) {
     chop = false;
   }
+  particleMove();
+  display();
   frame += 1;
   //setting the time
   timer -= 1;
